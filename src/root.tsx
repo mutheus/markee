@@ -1,6 +1,7 @@
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { App } from 'app'
 import { theme } from 'resources/theme'
+import 'normalize.css'
 
 export function Root () {
   return (
@@ -23,6 +24,5 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'DM Sans', sans-serif;
-    margin: 0;
   }
 `
