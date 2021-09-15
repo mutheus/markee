@@ -1,5 +1,11 @@
+import styled from 'styled-components'
+
 export function App () {
   return (
-    <h1>Hello, world!</h1>
+    <Title>Hello, world!</Title>
   )
 }
+
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.primary}
+`
