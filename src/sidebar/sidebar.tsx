@@ -10,9 +10,9 @@ export function Sidebar () {
     <S.Wrapper>
       <S.AsideContainer>
         <S.LogoWrapper>
-          <a href='/'>
+          <S.ListLink href='/'>
             <Logo />
-          </a>
+          </S.ListLink>
         </S.LogoWrapper>
 
         <S.TitleWrapper>
@@ -25,29 +25,29 @@ export function Sidebar () {
           <PlusIcon /> Adicionar arquivo
         </S.Button>
 
-        <S.Nav>
-          <ul>
-            <li>
+        <nav>
+          <S.List>
+            <S.ListItem>
               <FileIcon />
-              <a href='/readme'>README.md</a>
-              <span></span>
-            </li>
-            <li>
+              <S.ListLink href='/readme'>README.md</S.ListLink>
+              <span />
+            </S.ListItem>
+            <S.ListItem>
               <FileIcon />
-              <a href='/contributing'>CONTRIBUTING.md</a>
+              <S.ListLink href='/contributing'>CONTRIBUTING.md</S.ListLink>
 
-              <button>
+              <S.RemoveButton>
                 <RemoveIcon />
-              </button>
-            </li>
-            <li>
+              </S.RemoveButton>
+            </S.ListItem>
+            <S.ListItem>
               <FileIcon />
-              <a href='/license'>LICENSE.md</a>
-              
+              <S.ListLink href='/license'>LICENSE.md</S.ListLink>
+
               <ToSaveIcon />
-            </li>
-          </ul>
-        </S.Nav>
+            </S.ListItem>
+          </S.List>
+        </nav>
       </S.AsideContainer>
     </S.Wrapper>
   )

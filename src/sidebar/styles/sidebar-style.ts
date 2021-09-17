@@ -58,46 +58,44 @@ export const Button = styled.button`${({ theme }) => css`
   gap: .750em;
 `}`
 
-export const Nav = styled.nav`
-  ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
+export const List = styled.ul`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`
 
-  ul li {
-    list-style-type: none;
-    display: flex;
-    gap: 12px;
-    place-items: center;
-    height: 37px;
-    padding: 0 1em;
-    border-radius: 6px;
-  }
+export const ListItem = styled.li`
+  list-style-type: none;
+  display: flex;
+  gap: 12px;
+  place-items: center;
+  height: 37px;
+  padding: 0 1em;
+  border-radius: 6px;
 
-  ul li:hover {
+  &:hover {
     background-color: rgba(255, 255, 255, .05);
   }
 
-  ul li:nth-child(3) {
+  &:nth-child(3) {
     background-color: rgba(255, 255, 255, .05);
   }
 
-  ul li button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-
-  ul li *:last-child {
+  *:last-child {
     margin-left: auto;
   }
+`
 
-  ul a {
-    color: rgba(255, 255, 255, .65);
-    text-decoration: none;
-  }
+export const ListLink = styled.a`
+  color: rgba(255, 255, 255, .65);
+  text-decoration: none;
+`
+
+export const RemoveButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 `
