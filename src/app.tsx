@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 
 export function App () {
   return (
@@ -48,14 +48,14 @@ const Wrapper = styled.div`
   grid-template-columns: 20.750em 1fr;
 `
 
-const AsideContainer = styled.aside`
-  background-color: ${({ theme }) => theme.colors.black};
-  height: 100vh;
+const AsideContainer = styled.aside`${({ theme }) => css`
+  background-color: ${theme.colors.black};
+  min-height: 100vh;
   padding: 2em;
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.white};
-`
+  color: ${theme.colors.white};
+`}`
 
 const Logo = styled.h1`
   display: flex;
@@ -92,6 +92,13 @@ const Title = styled.h2`
   font-weight: 500;
 `
 
-const Button = styled.button`
+const Button = styled.button`${({ theme }) => css`
   height: 38.88px;
-`
+  background-color: ${theme.colors.primary};
+  border: none;
+  color: ${theme.colors.lightBlack};
+  border-radius: .212em;
+  font-size: 0.847em;
+  margin: 1.357em 0;
+  cursor: pointer;
+`}`
