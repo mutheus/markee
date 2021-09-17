@@ -49,7 +49,7 @@ export const Button = styled.button`${({ theme }) => css`
   color: ${theme.colors.lightBlack};
   border-radius: .212em;
   font-size: 0.847em;
-  margin: 1.357em 0;
+  margin: 1em 0 2.125em;
   cursor: pointer;
   padding: 0 2em;
   display: flex;
@@ -59,18 +59,45 @@ export const Button = styled.button`${({ theme }) => css`
 `}`
 
 export const Nav = styled.nav`
-  margin: .750em 0;
-
   ul {
+    margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
   }
 
   ul li {
     list-style-type: none;
+    display: flex;
+    gap: 12px;
+    place-items: center;
+    height: 37px;
+    padding: 0 1em;
+    border-radius: 6px;
+  }
+
+  ul li:hover {
+    background-color: rgba(255, 255, 255, .05);
+  }
+
+  ul li:nth-child(3) {
+    background-color: rgba(255, 255, 255, .05);
+  }
+
+  ul li button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  ul li *:last-child {
+    margin-left: auto;
   }
 
   ul a {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, .65);
     text-decoration: none;
   }
 `
