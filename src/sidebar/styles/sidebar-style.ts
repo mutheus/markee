@@ -1,10 +1,5 @@
 import styled, { css } from 'styled-components/macro'
 
-export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 20.750em 1fr;
-`
-
 export const AsideContainer = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
   min-height: 100vh;
@@ -91,6 +86,7 @@ export const ListItem = styled.li`
 export const ListLink = styled.a`
   color: rgba(255, 255, 255, .65);
   text-decoration: none;
+  text-transform: uppercase;
 `
 
 export const RemoveButton = styled.button`
