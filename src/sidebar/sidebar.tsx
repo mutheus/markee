@@ -3,15 +3,55 @@ import { ReactComponent as Logo } from 'shared/assets/logo.svg'
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
+import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
+import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
 import * as S from './styles/sidebar-style'
+
+const data = [
+  {
+    id: 1,
+    name: 'README.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 2,
+    name: 'CONTRIBUTING.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 3,
+    name: 'LICENSE.md',
+    content: '',
+    active: false,
+    status: 'saving',
+  },
+  {
+    id: 4,
+    name: 'Links.md',
+    content: '',
+    active: true,
+    status: 'saved',
+  },
+  {
+    id: 5,
+    name: 'roadmap.md',
+    content: '',
+    active: false,
+    status: 'editing',
+  },
+]
 
 export function Sidebar () {
   return (
     <S.AsideContainer>
       <S.LogoWrapper>
-        <S.ListLink href='/'>
+        <a href='/'>
           <Logo />
-        </S.ListLink>
+        </a>
       </S.LogoWrapper>
 
       <S.TitleWrapper>
@@ -26,25 +66,30 @@ export function Sidebar () {
 
       <nav>
         <S.List>
-          <S.ListItem>
-            <FileIcon />
-            <S.ListLink href='/readme'>README.md</S.ListLink>
-            <span />
-          </S.ListItem>
-          <S.ListItem>
-            <FileIcon />
-            <S.ListLink href='/contributing'>CONTRIBUTING.md</S.ListLink>
+          {data.map((file) => (
+            <S.ListItem key={file.id} active={file.active}>
+              <FileIcon />
+              <S.ListLink href='/'>{file.name}</S.ListLink>
 
-            <S.RemoveButton>
-              <RemoveIcon />
-            </S.RemoveButton>
-          </S.ListItem>
-          <S.ListItem>
-            <FileIcon />
-            <S.ListLink href='/license'>LICENSE.md</S.ListLink>
-
-            <ToSaveIcon />
-          </S.ListItem>
+              {file.active && file.status === 'editing'
+                ? (
+                  <ToSaveIcon />
+                  )
+                : file.active && file.status === 'saving'
+                  ? (
+                    <SavingIcon />
+                    )
+                  : file.active && file.status === 'saved'
+                    ? (
+                      <SavedIcon />
+                      )
+                    : (
+                      <S.RemoveButton>
+                        <RemoveIcon />
+                      </S.RemoveButton>
+                      )}
+            </S.ListItem>
+          ))}
         </S.List>
       </nav>
     </S.AsideContainer>

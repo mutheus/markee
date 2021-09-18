@@ -63,7 +63,11 @@ export const List = styled.ul`
   gap: 8px;
 `
 
-export const ListItem = styled.li`
+type ListItemProps = {
+  active: boolean
+}
+
+export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   list-style-type: none;
   display: flex;
   gap: 12px;
@@ -72,27 +76,38 @@ export const ListItem = styled.li`
   padding: 0 .7em;
   border-radius: 6px;
 
-  &:hover {
-    background-color: rgba(255, 255, 255, .05);
+  background-color: ${active ? 'rgba(255, 255, 255, .05)' : ''};
+
+  a {
+    color: ${active ? theme.colors.white : 'rgba(255, 255, 255, .65)'};
   }
 
-  &:nth-child(3) {
+  svg path {
+    stroke: ${active ? theme.colors.primary : theme.colors.white};
+    stroke-opacity: ${active && 'unset'};
+  }
+
+  &:hover {
     background-color: rgba(255, 255, 255, .05);
   }
 
   *:last-child {
     margin-left: auto;
   }
-`
+`}`
 
 export const ListLink = styled.a`
-  color: rgba(255, 255, 255, .65);
   text-decoration: none;
   font-weight: 400;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white}
+  }
 `
 
 export const RemoveButton = styled.button`
   background-color: transparent;
+  visibility: hidden;
   border: none;
   cursor: pointer;
   padding: 0;
