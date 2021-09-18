@@ -4,7 +4,6 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
-import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
 import * as S from './styles/sidebar-style'
 
 const data = [
@@ -33,15 +32,15 @@ const data = [
     id: 4,
     name: 'Links.md',
     content: '',
-    active: true,
+    active: false,
     status: 'saved',
   },
   {
     id: 5,
     name: 'roadmap.md',
     content: '',
-    active: false,
-    status: 'editing',
+    active: true,
+    status: 'saving',
   },
 ]
 
@@ -77,7 +76,7 @@ export function Sidebar () {
                   )
                 : file.active && file.status === 'saving'
                   ? (
-                    <SavingIcon />
+                    <S.SavingSpinner />
                     )
                   : file.active && file.status === 'saved'
                     ? (

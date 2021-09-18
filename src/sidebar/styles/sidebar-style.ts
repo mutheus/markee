@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components/macro'
+import { ReactComponent as SavingIcon } from '../assets/saving-icon.svg'
+import styled, { css, keyframes } from 'styled-components/macro'
 
 export const AsideContainer = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
@@ -111,4 +112,17 @@ export const RemoveButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
+`
+
+const spinning = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const SavingSpinner = styled(SavingIcon)`
+  animation: 2000ms ${spinning} infinite linear;
 `
