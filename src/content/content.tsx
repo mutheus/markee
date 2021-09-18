@@ -5,10 +5,10 @@ export function Content () {
     <S.ContentWrapper>
       <S.Header>
         <S.FileIconPrimary />
-        <S.InputText />
+        <S.InputText defaultValue='Contribut' />
       </S.Header>
       <S.Container>
-        <S.TextArea />
+        <S.TextArea placeholder='Your markdown goes here...' />
         <S.Output>
           <h2>Bootcamp Brainn Co.</h2>
           <p>Lorem ipsum dolor sit amet simet</p>
