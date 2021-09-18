@@ -1,5 +1,9 @@
-import { ReactComponent as SavingIcon } from '../assets/saving-icon.svg'
+import { ReactComponent as SavingIcon } from 'sidebar/assets/saving-icon.svg'
 import styled, { css, keyframes } from 'styled-components/macro'
+
+type ListItemProps = {
+  active: boolean
+}
 
 export const AsideContainer = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
@@ -64,10 +68,6 @@ export const List = styled.ul`
   gap: 8px;
 `
 
-type ListItemProps = {
-  active: boolean
-}
-
 export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   list-style-type: none;
   display: flex;
@@ -77,7 +77,7 @@ export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   padding: 0 .7em;
   border-radius: 6px;
 
-  background-color: ${active ? 'rgba(255, 255, 255, .05)' : ''};
+  background-color: ${active && 'rgba(255, 255, 255, .05)'};
 
   a {
     color: ${active ? theme.colors.white : 'rgba(255, 255, 255, .65)'};
