@@ -57,6 +57,10 @@ export const Button = styled.button`${({ theme }) => css`
   align-items: center;
   justify-content: center;
   gap: .750em;
+
+  &:hover {
+    opacity: .9;
+  }
 `}`
 
 export const List = styled.ul`
@@ -77,7 +81,7 @@ export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   padding: 0 .7em;
   border-radius: 6px;
 
-  background-color: ${active && 'rgba(255, 255, 255, .05)'};
+  background-color: ${active && theme.colors.lightBlack};
 
   a {
     color: ${active ? theme.colors.white : 'rgba(255, 255, 255, .65)'};
@@ -89,7 +93,11 @@ export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   }
 
   &:hover {
-    background-color: rgba(255, 255, 255, .05);
+    background-color: ${theme.colors.lightBlack};
+
+    ${RemoveButton} {
+      visibility: initial;
+    }
   }
 
   *:last-child {

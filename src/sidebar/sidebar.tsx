@@ -55,7 +55,9 @@ export function Sidebar () {
 
       <S.TitleWrapper>
         <S.HorizontalLine />
+
         <S.Title>Arquivos</S.Title>
+
         <S.HorizontalLine />
       </S.TitleWrapper>
 
@@ -68,6 +70,7 @@ export function Sidebar () {
           {data.map((file) => (
             <S.ListItem key={file.id} active={file.active}>
               <FileIcon />
+
               <S.ListLink href='/'>{file.name}</S.ListLink>
 
               {file.active && file.status === 'editing'
