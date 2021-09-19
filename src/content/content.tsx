@@ -1,6 +1,22 @@
 import { useState, ChangeEvent } from 'react'
 import marked from 'marked'
+import 'highlight.js/styles/atom-one-dark.css'
+
 import * as S from './styles/content-style'
+
+import('highlight.js').then(hljs => {
+  const highlight = hljs.default
+
+  marked.setOptions({
+    highlight: (code, language) => {
+      if (language && highlight.getLanguage(language)) {
+        return highlight.highlight(code, { language }).value
+      }
+
+      return highlight.highlightAuto(code).value
+    },
+  })
+})
 
 export function Content () {
   const [output, setOutput] = useState('')
