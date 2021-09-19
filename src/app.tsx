@@ -1,13 +1,24 @@
+import { useState } from 'react'
 import styled from 'styled-components/macro'
 import { Sidebar } from 'sidebar'
 import { Content } from 'content'
 
 export function App () {
+  const [files] = useState([
+    {
+      id: 1,
+      name: 'Sem título',
+      content: '',
+      active: true,
+      status: 'saved',
+    },
+  ])
+
   return (
     <Wrapper>
-      <Sidebar />
+      <Sidebar files={files} />
 
-      <Content />
+      <Content files={files} />
     </Wrapper>
   )
 }

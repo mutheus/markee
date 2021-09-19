@@ -4,47 +4,11 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
+import { FilesProps } from 'app-types'
+
 import * as S from './styles/sidebar-style'
 
-const data = [
-  {
-    id: 1,
-    name: 'README.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 2,
-    name: 'CONTRIBUTING.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 3,
-    name: 'LICENSE.md',
-    content: '',
-    active: false,
-    status: 'saving',
-  },
-  {
-    id: 4,
-    name: 'Links.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 5,
-    name: 'roadmap.md',
-    content: '',
-    active: true,
-    status: 'saving',
-  },
-]
-
-export function Sidebar () {
+export function Sidebar ({ files }: FilesProps) {
   return (
     <S.AsideContainer>
       <S.LogoWrapper>
@@ -67,7 +31,7 @@ export function Sidebar () {
 
       <nav>
         <S.List>
-          {data.map((file) => (
+          {files.map((file) => (
             <S.ListItem key={file.id} active={file.active}>
               <FileIcon />
 

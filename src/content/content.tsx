@@ -1,7 +1,8 @@
 import { useState, ChangeEvent } from 'react'
 import marked from 'marked'
-import 'highlight.js/styles/atom-one-dark.css'
+import { FilesProps } from 'app-types'
 
+import 'highlight.js/styles/atom-one-dark.css'
 import * as S from './styles/content-style'
 
 import('highlight.js').then(hljs => {
@@ -18,15 +19,20 @@ import('highlight.js').then(hljs => {
   })
 })
 
-export function Content () {
-  const [output, setOutput] = useState('')
+export function Content ({ files }: FilesProps) {
+  const [name, setName] = useState(files[0].name)
+  const [content, setContent] = useState(files[0].content)
 
-  const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setOutput(e.target.value)
+  const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value)
   }
 
-  const createOutput = () => {
-    return { __html: marked(output) }
+  const createContent = () => {
+    return { __html: marked(content) }
+  }
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
   }
 
   return (
@@ -34,12 +40,12 @@ export function Content () {
       <S.Header>
         <S.FileIconPrimary />
 
-        <S.InputText defaultValue='Contribut' />
+        <S.InputText value={name} onChange={handleNameChange} />
       </S.Header>
       <S.Container>
-        <S.TextArea value={output} onChange={handleTextChange} placeholder='Your markdown goes here...' />
+        <S.TextArea value={content} onChange={handleContentChange} placeholder='Your markdown goes here...' />
 
-        <S.Output dangerouslySetInnerHTML={createOutput()} />
+        <S.Output dangerouslySetInnerHTML={createContent()} />
       </S.Container>
     </S.ContentWrapper>
   )
