@@ -2,31 +2,10 @@ import { useState } from 'react'
 import styled from 'styled-components/macro'
 import { Sidebar } from 'sidebar'
 import { Content } from 'content'
+import { FileType } from 'files'
 
 export function App () {
-  const [files, setFiles] = useState([
-    {
-      id: 1,
-      name: 'README.md',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-    {
-      id: 2,
-      name: 'Links.md',
-      content: '',
-      active: true,
-      status: 'saved',
-    },
-    {
-      id: 3,
-      name: 'CONTRIBUTING',
-      content: '',
-      active: false,
-      status: 'saved',
-    },
-  ])
+  const [files, setFiles] = useState<FileType[]>([])
 
   return (
     <Wrapper>

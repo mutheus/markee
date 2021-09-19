@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 import marked from 'marked'
-import { FilesProps } from 'files'
+import { ComponentType } from 'files'
 
 import 'highlight.js/styles/atom-one-dark.css'
 import * as S from './styles/content-style'
@@ -19,7 +19,7 @@ import('highlight.js').then(hljs => {
   })
 })
 
-export function Content ({ files }: FilesProps) {
+export function Content ({ files }: ComponentType) {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
 
