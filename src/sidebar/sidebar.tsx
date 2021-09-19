@@ -19,13 +19,16 @@ export function Sidebar ({ files, setFiles }: FilesProps) {
       status: 'saved',
     }
 
-    files.forEach((file) => {
-      file.active = false
+    const activeFalse = files.map(file => {
+      return {
+        ...file,
+        active: false,
+      }
     })
 
-    const newFiles = [newFile, ...files]
+    const newFilesArr = [newFile, ...activeFalse]
 
-    setFiles(newFiles)
+    setFiles(newFilesArr)
   }
 
   return (
