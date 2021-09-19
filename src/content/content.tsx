@@ -19,18 +19,20 @@ import('highlight.js').then(hljs => {
   })
 })
 
-export function Content ({ files, setFiles }: ComponentType) {
+export function Content ({ files, setFiles, inputRef }: ComponentType) {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
 
   useEffect(() => {
+    inputRef.current?.focus()
+
     files.forEach((file) => {
       if (file.active) {
         setName(file.name)
         setContent(file.content)
       }
     })
-  }, [files])
+  }, [files, inputRef])
 
   useEffect(() => {
     setFiles(files => files
@@ -64,7 +66,7 @@ export function Content ({ files, setFiles }: ComponentType) {
       <S.Header>
         <S.FileIconPrimary />
 
-        <S.InputText value={name} onChange={handleNameChange} />
+        <S.InputText value={name} onChange={handleNameChange} ref={inputRef} />
       </S.Header>
       <S.Container>
         <S.TextArea value={content} onChange={handleContentChange} placeholder='Your markdown goes here...' />

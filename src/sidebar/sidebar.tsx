@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
 import { ReactComponent as Logo } from 'shared/assets/logo.svg'
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
@@ -9,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import * as S from './styles/sidebar-style'
 
-export function Sidebar ({ files, setFiles }: ComponentType) {
+export function Sidebar ({ files, setFiles, inputRef }: ComponentType) {
   const handleAddClick = () => {
     setFiles(files => files
       .map(file => ({
@@ -22,6 +23,26 @@ export function Sidebar ({ files, setFiles }: ComponentType) {
         content: '',
         active: true,
         status: 'saved',
+      }))
+  }
+
+  const handleItemClick = (e: MouseEvent<HTMLLIElement>, id: string) => {
+    e.preventDefault()
+    inputRef.current?.focus()
+
+    setFiles(files => files
+      .map(file => {
+        if (file.id === id) {
+          return {
+            ...file,
+            active: true,
+          }
+        }
+
+        return {
+          ...file,
+          active: false,
+        }
       }))
   }
 
@@ -48,10 +69,10 @@ export function Sidebar ({ files, setFiles }: ComponentType) {
       <nav>
         <S.List>
           {files.map((file) => (
-            <S.ListItem key={file.id} active={file.active}>
+            <S.ListItem key={file.id} active={file.active} onClick={(e) => handleItemClick(e, file.id)}>
               <FileIcon />
 
-              <S.ListLink href='/'>{file.name}</S.ListLink>
+              <S.ListLink href={file.id}>{file.name}</S.ListLink>
 
               {file.active && file.status === 'editing'
                 ? (
