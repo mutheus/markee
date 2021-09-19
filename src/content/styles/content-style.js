@@ -16,7 +16,6 @@ export const InputText = styled.input`
   color: ${({ theme }) => theme.colors.black};
   border: none;
   padding: 0;
-  text-transform: uppercase;
   font-weight: 500;
   letter-spacing: -.02em;
   outline: none;
@@ -25,7 +24,7 @@ export const FileIconPrimary = styled(FileIcon)`
   path {
     stroke: ${({ theme }) => theme.colors.primary};
     stroke-opacity: unset;
-    stroke-width: 1.5px;  
+    stroke-width: 1.5px;
   }
 `
 

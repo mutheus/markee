@@ -4,47 +4,33 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
+import { FilesProps } from 'files'
+import { v4 as uuidv4 } from 'uuid'
+
 import * as S from './styles/sidebar-style'
 
-const data = [
-  {
-    id: 1,
-    name: 'README.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 2,
-    name: 'CONTRIBUTING.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 3,
-    name: 'LICENSE.md',
-    content: '',
-    active: false,
-    status: 'saving',
-  },
-  {
-    id: 4,
-    name: 'Links.md',
-    content: '',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: 5,
-    name: 'roadmap.md',
-    content: '',
-    active: true,
-    status: 'saving',
-  },
-]
+export function Sidebar ({ files, setFiles }: FilesProps) {
+  const handleAddClick = () => {
+    const newFile = {
+      id: uuidv4(),
+      name: 'Sem título',
+      content: '',
+      active: true,
+      status: 'saved',
+    }
 
-export function Sidebar () {
+    const activeFalse = files.map(file => {
+      return {
+        ...file,
+        active: false,
+      }
+    })
+
+    const newFilesArr = [newFile, ...activeFalse]
+
+    setFiles(newFilesArr)
+  }
+
   return (
     <S.AsideContainer>
       <S.LogoWrapper>
@@ -61,13 +47,13 @@ export function Sidebar () {
         <S.HorizontalLine />
       </S.TitleWrapper>
 
-      <S.Button>
+      <S.Button onClick={handleAddClick}>
         <PlusIcon /> Adicionar arquivo
       </S.Button>
 
       <nav>
         <S.List>
-          {data.map((file) => (
+          {files.map((file) => (
             <S.ListItem key={file.id} active={file.active}>
               <FileIcon />
 
