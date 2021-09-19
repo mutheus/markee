@@ -1,4 +1,6 @@
-declare module 'app-types' {
+declare module 'files' {
+  import { Dispatch, SetStateAction } from 'react'
+
   export type FileProps = {
     id: number
     name: string
@@ -9,5 +11,6 @@ declare module 'app-types' {
 
   export type FilesProps = {
     files: FileProps[]
+    setFiles: Dispatch<SetStateAction>
   }
 }

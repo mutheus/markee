@@ -4,11 +4,30 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
-import { FilesProps } from 'app-types'
+import { FilesProps } from 'files'
+import { v4 as uuidv4 } from 'uuid'
 
 import * as S from './styles/sidebar-style'
 
-export function Sidebar ({ files }: FilesProps) {
+export function Sidebar ({ files, setFiles }: FilesProps) {
+  const handleAddClick = () => {
+    const newFile = {
+      id: uuidv4(),
+      name: 'Sem título',
+      content: '',
+      active: true,
+      status: 'saved',
+    }
+
+    files.forEach((file) => {
+      file.active = false
+    })
+
+    const newFiles = [newFile, ...files]
+
+    setFiles(newFiles)
+  }
+
   return (
     <S.AsideContainer>
       <S.LogoWrapper>
@@ -25,7 +44,7 @@ export function Sidebar ({ files }: FilesProps) {
         <S.HorizontalLine />
       </S.TitleWrapper>
 
-      <S.Button>
+      <S.Button onClick={handleAddClick}>
         <PlusIcon /> Adicionar arquivo
       </S.Button>
 

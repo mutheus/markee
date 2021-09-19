@@ -4,21 +4,35 @@ import { Sidebar } from 'sidebar'
 import { Content } from 'content'
 
 export function App () {
-  const [files] = useState([
+  const [files, setFiles] = useState([
     {
       id: 1,
-      name: 'Sem título',
+      name: 'README.md',
+      content: '',
+      active: false,
+      status: 'saved',
+    },
+    {
+      id: 2,
+      name: 'Links.md',
       content: '',
       active: true,
+      status: 'saved',
+    },
+    {
+      id: 3,
+      name: 'CONTRIBUTING',
+      content: '',
+      active: false,
       status: 'saved',
     },
   ])
 
   return (
     <Wrapper>
-      <Sidebar files={files} />
+      <Sidebar files={files} setFiles={setFiles} />
 
-      <Content files={files} />
+      <Content files={files} setFiles={setFiles} />
     </Wrapper>
   )
 }

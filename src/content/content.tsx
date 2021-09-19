@@ -1,6 +1,6 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import marked from 'marked'
-import { FilesProps } from 'app-types'
+import { FilesProps } from 'files'
 
 import 'highlight.js/styles/atom-one-dark.css'
 import * as S from './styles/content-style'
@@ -20,8 +20,17 @@ import('highlight.js').then(hljs => {
 })
 
 export function Content ({ files }: FilesProps) {
-  const [name, setName] = useState(files[0].name)
-  const [content, setContent] = useState(files[0].content)
+  const [name, setName] = useState('')
+  const [content, setContent] = useState('')
+
+  useEffect(() => {
+    files.forEach((file) => {
+      if (file.active) {
+        setName(file.name)
+        setContent(file.content)
+      }
+    })
+  }, [files])
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
