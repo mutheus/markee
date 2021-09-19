@@ -19,7 +19,7 @@ import('highlight.js').then(hljs => {
   })
 })
 
-export function Content ({ files }: ComponentType) {
+export function Content ({ files, setFiles }: ComponentType) {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
 
@@ -31,6 +31,21 @@ export function Content ({ files }: ComponentType) {
       }
     })
   }, [files])
+
+  useEffect(() => {
+    setFiles(files => files
+      .map(file => {
+        if (file.active) {
+          return {
+            ...file,
+            name,
+            content,
+          }
+        }
+
+        return file
+      }))
+  }, [name, content, setFiles])
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
