@@ -1,5 +1,5 @@
 declare module 'files' {
-  import { Dispatch, SetStateAction } from 'react'
+  import { Dispatch, SetStateAction, RefObject } from 'react'
 
   export type StatusType = 'saved' | 'saving' | 'editing'
 
@@ -14,5 +14,6 @@ declare module 'files' {
   export type ComponentType = {
     files: FileType[]
     setFiles: Dispatch<SetStateAction<FileType[]>>
+    inputRef: RefObject<HTMLInputElement>
   }
 }

@@ -19,7 +19,7 @@ import('highlight.js').then(hljs => {
   })
 })
 
-export function Content ({ files }: ComponentType) {
+export function Content ({ files, setFiles, inputRef }: ComponentType) {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
 
@@ -31,6 +31,36 @@ export function Content ({ files }: ComponentType) {
       }
     })
   }, [files])
+
+  useEffect(() => {
+    setFiles(files => files
+      .map(file => {
+        if (file.active) {
+          return {
+            ...file,
+            name,
+            content,
+            status: 'editing',
+          }
+        }
+
+        return file
+      }))
+
+    const savingId = setInterval(() => {
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saved' } : file)))
+    }, 300)
+
+    return () => clearInterval(savingId)
+  }, [name, content, setFiles])
+
+  useEffect(() => {
+    const savedId = setTimeout(() => {
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
+    }, 300)
+
+    return () => clearTimeout(savedId)
+  }, [name, content, setFiles])
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
@@ -49,7 +79,7 @@ export function Content ({ files }: ComponentType) {
       <S.Header>
         <S.FileIconPrimary />
 
-        <S.InputText value={name} onChange={handleNameChange} />
+        <S.InputText value={name} onChange={handleNameChange} ref={inputRef} />
       </S.Header>
       <S.Container>
         <S.TextArea value={content} onChange={handleContentChange} placeholder='Your markdown goes here...' />
