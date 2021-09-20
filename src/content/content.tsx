@@ -24,15 +24,13 @@ export function Content ({ files, setFiles, inputRef }: ComponentType) {
   const [content, setContent] = useState('')
 
   useEffect(() => {
-    inputRef.current?.focus()
-
     files.forEach((file) => {
       if (file.active) {
         setName(file.name)
         setContent(file.content)
       }
     })
-  }, [files, inputRef])
+  }, [files])
 
   useEffect(() => {
     setFiles(files => files
@@ -42,11 +40,28 @@ export function Content ({ files, setFiles, inputRef }: ComponentType) {
             ...file,
             name,
             content,
+            status: 'editing',
           }
         }
 
         return file
       }))
+
+    const savingId = setTimeout(() => {
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
+    }, 300)
+
+    return () => clearTimeout(savingId)
+  }, [name, content, setFiles])
+
+  useEffect(() => {
+    setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
+
+    const savedId = setTimeout(() => {
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saved' } : file)))
+    }, 300)
+
+    return () => clearTimeout(savedId)
   }, [name, content, setFiles])
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
