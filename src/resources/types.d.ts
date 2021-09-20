@@ -11,8 +11,11 @@ declare module 'files' {
     status: StatusType
   }
 
-  export type ComponentType = {
+  export type FilesType = {
     files: FileType[]
+  }
+
+  export type StaticType = {
     setFiles: Dispatch<SetStateAction<FileType[]>>
     inputRef: RefObject<HTMLInputElement>
   }

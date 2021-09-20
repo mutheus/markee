@@ -1,12 +1,12 @@
 import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
 import { ReactComponent as Logo } from 'shared/assets/logo.svg'
-import { ComponentType } from 'files'
+import { FilesType, StaticType } from 'files'
 import { NavItem } from 'nav-item'
 import { v4 as uuidv4 } from 'uuid'
 
 import * as S from './styles/sidebar-style'
 
-export function Sidebar ({ files, setFiles, inputRef }: ComponentType) {
+export function Sidebar ({ files, setFiles, inputRef }: FilesType & StaticType) {
   const handleAddClick = () => {
     setFiles(files => files
       .map(file => ({

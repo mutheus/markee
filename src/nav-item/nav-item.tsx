@@ -1,11 +1,11 @@
-import { Dispatch, MouseEvent, RefObject, SetStateAction } from 'react'
+import { MouseEvent } from 'react'
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
 import styled, { css, keyframes } from 'styled-components'
-import { FileType } from 'files'
+import { FileType, StaticType } from 'files'
 
 type ListItemProps = {
   active: boolean
@@ -13,11 +13,9 @@ type ListItemProps = {
 
 type NavItemProps = {
   file: FileType
-  setFiles: Dispatch<SetStateAction<FileType[]>>
-  inputRef: RefObject<HTMLInputElement>
 }
 
-export function NavItem ({ file, setFiles, inputRef }: NavItemProps) {
+export function NavItem ({ file, setFiles, inputRef }: NavItemProps & StaticType) {
   const handleItemClick = (e: MouseEvent<HTMLLIElement>, id: string) => {
     e.preventDefault()
     inputRef.current?.focus()
