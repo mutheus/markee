@@ -49,7 +49,7 @@ export function Content ({ files, setFiles, inputRef }: ComponentType) {
 
     const savingId = setInterval(() => {
       setFiles(files => files.map(file => (file.active ? { ...file, status: 'saved' } : file)))
-    }, 1000)
+    }, 300)
 
     return () => clearInterval(savingId)
   }, [name, content, setFiles])
@@ -57,7 +57,7 @@ export function Content ({ files, setFiles, inputRef }: ComponentType) {
   useEffect(() => {
     const savedId = setTimeout(() => {
       setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
-    }, 1000)
+    }, 300)
 
     return () => clearTimeout(savedId)
   }, [name, content, setFiles])
