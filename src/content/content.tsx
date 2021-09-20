@@ -47,19 +47,17 @@ export function Content ({ files, setFiles, inputRef }: ComponentType) {
         return file
       }))
 
-    const savingId = setTimeout(() => {
-      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
-    }, 300)
+    const savingId = setInterval(() => {
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saved' } : file)))
+    }, 1000)
 
-    return () => clearTimeout(savingId)
+    return () => clearInterval(savingId)
   }, [name, content, setFiles])
 
   useEffect(() => {
-    setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
-
     const savedId = setTimeout(() => {
-      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saved' } : file)))
-    }, 300)
+      setFiles(files => files.map(file => (file.active ? { ...file, status: 'saving' } : file)))
+    }, 1000)
 
     return () => clearTimeout(savedId)
   }, [name, content, setFiles])
