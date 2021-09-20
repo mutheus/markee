@@ -1,9 +1,4 @@
-import { ReactComponent as SavingIcon } from 'sidebar/assets/saving-icon.svg'
-import styled, { css, keyframes } from 'styled-components/macro'
-
-type ListItemProps = {
-  active: boolean
-}
+import styled, { css } from 'styled-components/macro'
 
 export const AsideContainer = styled.aside`${({ theme }) => css`
   background-color: ${theme.colors.black};
@@ -70,67 +65,4 @@ export const List = styled.ul`
   flex-direction: column;
   font-size: .96rem;
   gap: 8px;
-`
-
-export const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
-  list-style-type: none;
-  display: flex;
-  gap: 12px;
-  place-items: center;
-  height: 37px;
-  padding: 0 .7em;
-  border-radius: 6px;
-
-  background-color: ${active && theme.colors.lightBlack};
-
-  a {
-    color: ${active ? theme.colors.white : 'rgba(255, 255, 255, .65)'};
-  }
-
-  svg path {
-    stroke: ${active ? theme.colors.primary : theme.colors.white};
-    stroke-opacity: ${active && 'unset'};
-  }
-
-  &:hover {
-    background-color: ${theme.colors.lightBlack};
-
-    ${RemoveButton} {
-      visibility: initial;
-    }
-  }
-
-  *:last-child {
-    margin-left: auto;
-  }
-`}`
-
-export const ListLink = styled.a`
-  text-decoration: none;
-  font-weight: 400;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.white}
-  }
-`
-
-export const RemoveButton = styled.button`
-  background-color: transparent;
-  visibility: hidden;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-`
-
-const spinning = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-export const SavingSpinner = styled(SavingIcon)`
-  animation: 2000ms ${spinning} infinite linear;
 `
