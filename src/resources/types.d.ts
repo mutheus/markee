@@ -1,5 +1,5 @@
 declare module 'files' {
-  import { Dispatch, SetStateAction, RefObject } from 'react'
+  import { RefObject } from 'react'
 
   export type StatusType = 'saved' | 'saving' | 'editing'
 
@@ -16,7 +16,6 @@ declare module 'files' {
   }
 
   export type StaticType = {
-    setFiles: Dispatch<SetStateAction<FileType[]>>
     inputRef: RefObject<HTMLInputElement>
   }
 }

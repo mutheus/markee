@@ -1,27 +1,23 @@
+import { MouseEvent } from 'react'
 import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
 import { ReactComponent as Logo } from 'shared/assets/logo.svg'
-import { FilesType, StaticType } from 'files'
+import { FileType } from 'files'
 import { NavItem } from 'nav-item'
-import { v4 as uuidv4 } from 'uuid'
-
 import * as S from './styles/sidebar-style'
 
-export function Sidebar ({ files, setFiles, inputRef }: FilesType & StaticType) {
-  const handleAddClick = () => {
-    setFiles(files => files
-      .map(file => ({
-        ...file,
-        active: false,
-      }))
-      .concat({
-        id: uuidv4(),
-        name: 'Sem título',
-        content: '',
-        active: true,
-        status: 'saved',
-      }))
-  }
+type SidebarProps = {
+  files: FileType[]
+  onRemoveFile: (id: string) => (e: MouseEvent) => void
+  onAddFile: () => void
+  onSelectFile: (id: string) => (e: MouseEvent) => void
+}
 
+export function Sidebar ({
+  files,
+  onAddFile,
+  onRemoveFile,
+  onSelectFile,
+}: SidebarProps) {
   return (
     <S.AsideContainer>
       <S.LogoWrapper>
@@ -38,14 +34,14 @@ export function Sidebar ({ files, setFiles, inputRef }: FilesType & StaticType) 
         <S.HorizontalLine />
       </S.TitleWrapper>
 
-      <S.Button onClick={handleAddClick}>
+      <S.Button onClick={onAddFile}>
         <PlusIcon /> Adicionar arquivo
       </S.Button>
 
       <nav>
         <S.List>
           {files.map((file) => (
-            <NavItem key={file.id} file={file} setFiles={setFiles} inputRef={inputRef} />
+            <NavItem key={file.id} file={file} onRemoveFile={onRemoveFile} onSelectFile={onSelectFile} />
           ))}
         </S.List>
       </nav>

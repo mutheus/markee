@@ -5,7 +5,7 @@ import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
 import styled, { css, keyframes } from 'styled-components'
-import { FileType, StaticType } from 'files'
+import { FileType } from 'files'
 
 type ListItemProps = {
   active: boolean
@@ -13,39 +13,20 @@ type ListItemProps = {
 
 type NavItemProps = {
   file: FileType
+  onRemoveFile: (id: string) => (e: MouseEvent) => void
+  onSelectFile: (id: string) => (e: MouseEvent) => void
 }
 
-export function NavItem ({ file, setFiles, inputRef }: NavItemProps & StaticType) {
-  const handleItemClick = (e: MouseEvent<HTMLLIElement>, id: string) => {
-    e.preventDefault()
-    inputRef.current?.focus()
-
-    setFiles(files => files
-      .map(file => {
-        if (file.id === id) {
-          return {
-            ...file,
-            active: true,
-          }
-        }
-
-        return {
-          ...file,
-          active: false,
-        }
-      }))
-  }
-
-  const handleRemoveClick = (e: MouseEvent<HTMLButtonElement>, id: string) => {
-    e.stopPropagation()
-    setFiles(files => files.filter(file => file.id !== id))
-  }
-
+export function NavItem ({
+  file,
+  onRemoveFile,
+  onSelectFile,
+}: NavItemProps) {
   return (
-    <ListItem active={file.active} onClick={(e) => handleItemClick(e, file.id)}>
+    <ListItem active={file.active} onClick={onSelectFile(file.id)}>
       <FileIcon />
 
-      <ListLink href={file.id}>{file.name}</ListLink>
+      <ListLink href={`file/${file.id}`}>{file.name}</ListLink>
 
       {file.active && file.status === 'editing'
         ? (
@@ -60,7 +41,7 @@ export function NavItem ({ file, setFiles, inputRef }: NavItemProps & StaticType
               <SavedIcon />
               )
             : (
-              <RemoveButton onClick={(e) => handleRemoveClick(e, file.id)}>
+              <RemoveButton onClick={onRemoveFile(file.id)}>
                 <RemoveIcon />
               </RemoveButton>
               )}
