@@ -1,5 +1,5 @@
 declare module 'files' {
-  import { Dispatch, SetStateAction, RefObject } from 'react'
+  import { MouseEvent } from 'react'
 
   export type StatusType = 'saved' | 'saving' | 'editing'
 
@@ -11,12 +11,8 @@ declare module 'files' {
     status: StatusType
   }
 
-  export type FilesType = {
-    files: FileType[]
-  }
-
-  export type StaticType = {
-    setFiles: Dispatch<SetStateAction<FileType[]>>
-    inputRef: RefObject<HTMLInputElement>
+  export type SidebarType = {
+    onRemoveFile: (id: string) => (e: MouseEvent) => void
+    onSelectFile: (id: string) => (e: MouseEvent) => void
   }
 }
