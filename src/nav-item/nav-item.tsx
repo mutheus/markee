@@ -1,11 +1,10 @@
-import { MouseEvent } from 'react'
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
 import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
 import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
 import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
 import styled, { css, keyframes } from 'styled-components'
-import { FileType } from 'files'
+import { FileType, SidebarType } from 'files'
 
 type ListItemProps = {
   active: boolean
@@ -13,20 +12,18 @@ type ListItemProps = {
 
 type NavItemProps = {
   file: FileType
-  onRemoveFile: (id: string) => (e: MouseEvent) => void
-  onSelectFile: (id: string) => (e: MouseEvent) => void
 }
 
 export function NavItem ({
   file,
   onRemoveFile,
   onSelectFile,
-}: NavItemProps) {
+}: NavItemProps & SidebarType) {
   return (
     <ListItem active={file.active} onClick={onSelectFile(file.id)}>
       <FileIcon />
 
-      <ListLink href={`file/${file.id}`}>{file.name}</ListLink>
+      <ListLink href={`/file/${file.id}`}>{file.name}</ListLink>
 
       {file.active && file.status === 'editing'
         ? (

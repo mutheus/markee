@@ -11,7 +11,6 @@ export function App () {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    console.log('status é 1')
     const file = files.find(file => file.active === true)
     let timer: globalThis.NodeJS.Timeout
 
@@ -53,7 +52,6 @@ export function App () {
   }, [files])
 
   useEffect(() => {
-    console.log('set é 2')
     async function setItem () {
       return await localforage.setItem('files', files)
     }
@@ -62,7 +60,6 @@ export function App () {
   }, [files])
 
   useEffect(() => {
-    console.log('get é 3')
     async function getItem () {
       const result = await localforage.getItem<FileType[]>('files')
 
@@ -83,7 +80,7 @@ export function App () {
       })
     }
 
-    console.log('promise', getItem())
+    getItem()
   }, [])
 
   const onContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -118,19 +115,22 @@ export function App () {
 
   const onAddFile = () => {
     inputRef.current?.focus()
+    const newFile: FileType = {
+      id: uuidv4(),
+      name: 'Empty title',
+      content: '',
+      active: true,
+      status: 'saved',
+    }
 
-    setFiles(files => files
-      .map(file => ({
-        ...file,
-        active: false,
-      }))
-      .concat({
-        id: uuidv4(),
-        name: 'Sem título',
-        content: '',
-        active: true,
-        status: 'saved',
-      }))
+    const activeFalse = files.map(file => ({
+      ...file,
+      active: false,
+    }))
+
+    const newFilesArr: FileType[] = [newFile, ...activeFalse]
+
+    setFiles(newFilesArr)
   }
 
   const onSelectFile = (id: string) => (e: MouseEvent) => {
