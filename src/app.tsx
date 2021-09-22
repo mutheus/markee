@@ -4,12 +4,14 @@ import { Sidebar } from 'sidebar'
 import { Content } from 'content'
 import { FileType } from 'files'
 import { v4 as uuidv4 } from 'uuid'
+import localforage from 'localforage'
 
 export function App () {
   const [files, setFiles] = useState<FileType[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    console.log('status é 1')
     const file = files.find(file => file.active === true)
     let timer: globalThis.NodeJS.Timeout
 
@@ -49,6 +51,40 @@ export function App () {
 
     return () => clearTimeout(timer)
   }, [files])
+
+  useEffect(() => {
+    console.log('set é 2')
+    async function setItem () {
+      return await localforage.setItem('files', files)
+    }
+
+    setItem()
+  }, [files])
+
+  useEffect(() => {
+    console.log('get é 3')
+    async function getItem () {
+      const result = await localforage.getItem<FileType[]>('files')
+
+      setFiles((): FileType[] => {
+        if (result) {
+          return result
+        }
+
+        return [
+          {
+            id: uuidv4(),
+            name: 'default.md',
+            content: '',
+            active: true,
+            status: 'saved',
+          },
+        ]
+      })
+    }
+
+    console.log('promise', getItem())
+  }, [])
 
   const onContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setFiles(files => files
