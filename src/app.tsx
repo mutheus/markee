@@ -65,6 +65,10 @@ export function App () {
 
       setFiles((): FileType[] => {
         if (result) {
+          const file = result.find(file => file.active === true)
+
+          window.history.replaceState(null, '', `/file/${file?.id}`)
+
           return result
         }
 
