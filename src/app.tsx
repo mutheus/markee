@@ -65,12 +65,18 @@ export function App () {
 
       setFiles((): FileType[] => {
         if (result) {
+          const file = result.find(file => file.active === true)
+
+          window.history.replaceState(null, '', `/file/${file?.id}`)
+
           return result
         }
 
+        window.history.replaceState(null, '', '/file/default.md')
+
         return [
           {
-            id: uuidv4(),
+            id: 'default.md',
             name: 'default.md',
             content: '',
             active: true,
@@ -115,8 +121,12 @@ export function App () {
 
   const onAddFile = () => {
     inputRef.current?.focus()
+    const id = uuidv4()
+
+    window.history.replaceState(null, '', `/file/${id}`)
+
     const newFile: FileType = {
-      id: uuidv4(),
+      id,
       name: 'Empty title',
       content: '',
       active: true,
@@ -135,8 +145,9 @@ export function App () {
 
   const onSelectFile = (id: string) => (e: MouseEvent) => {
     e.preventDefault()
-
     inputRef.current?.focus()
+
+    window.history.replaceState(null, '', `/file/${id}`)
 
     setFiles(files => files
       .map(file => {

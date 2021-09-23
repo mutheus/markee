@@ -32,7 +32,7 @@ export function Sidebar ({
       </S.TitleWrapper>
 
       <S.Button onClick={onAddFile}>
-        <PlusIcon /> Add new file
+        <PlusIcon /> Add a new file
       </S.Button>
 
       <nav>
