@@ -101,7 +101,12 @@ export const AddButton = styled.button`
   right: 2rem;
   bottom: 2rem;
   aspect-ratio: 1/1;
+  position: fixed;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 `
 
 export const Output = styled.output`

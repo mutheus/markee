@@ -1,5 +1,6 @@
 import { ChangeEvent, RefObject } from 'react'
 import { ReactComponent as HamburgerIcon } from './assets/hamburger-icon.svg'
+import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
 import marked from 'marked'
 import { FileType } from 'files'
 
@@ -82,7 +83,9 @@ export function Content ({
           : (
             <>
               <S.Output dangerouslySetInnerHTML={createContent()} />
-              <S.AddButton onClick={onAddFile}>+</S.AddButton>
+              <S.AddButton onClick={onAddFile}>
+                <PlusIcon />
+              </S.AddButton>
             </>
             )}
       </S.Container>
