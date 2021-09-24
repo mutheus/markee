@@ -1,4 +1,4 @@
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components/macro'
 import { App } from 'app'
 import { theme } from 'resources/theme'
 import 'normalize.css'

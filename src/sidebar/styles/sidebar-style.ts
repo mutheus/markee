@@ -9,12 +9,14 @@ export const Overlay = styled.div<OverlayProps>`${({ isMenuOpen }) => css`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
-  display: ${isMenuOpen ? 'grid' : 'none'};
+  transform: ${isMenuOpen ? 'translateX(0%)' : 'translateX(-100%)'};
+  transition: transform 0.2s ease-in;
 
   @media (min-width: 768px) {
     display: grid;
     grid-column: 1 / 2;
     position: initial;
+    transform: translateX(0%);
   }
 
   z-index: 1000;

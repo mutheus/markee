@@ -1,4 +1,4 @@
-import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
+import { ReactComponent as PlusIcon } from 'shared/assets/plus-icon.svg'
 import { ReactComponent as Logo } from 'shared/assets/logo.svg'
 import { FileType, SidebarType } from 'files'
 import { NavItem } from 'nav-item'

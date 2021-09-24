@@ -1,6 +1,6 @@
 import { ChangeEvent, RefObject } from 'react'
 import { ReactComponent as HamburgerIcon } from './assets/hamburger-icon.svg'
-import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
+import { ReactComponent as PlusIcon } from 'shared/assets/plus-icon.svg'
 import { ReactComponent as PreViewIcon } from './assets/preview-icon.svg'
 import { ReactComponent as EditIcon } from './assets/edit-icon.svg'
 import { ReactComponent as ToSaveIcon } from 'shared/assets/to-save-icon.svg'

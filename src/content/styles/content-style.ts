@@ -1,6 +1,6 @@
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as SavingIcon } from 'shared/assets/saving-icon.svg'
-import styled, { keyframes } from 'styled-components/macro'
+import styled, { keyframes, css } from 'styled-components/macro'
 
 type ContentProps = {
   isEditing: boolean
@@ -47,7 +47,7 @@ export const FileWrapper = styled.div`
   gap: .9em;
 `
 
-export const StatusWrapper = styled.div`
+export const StatusWrapper = styled.div`${({ theme }) => css`
   width: max-content;
 
   @media (min-width: 768px) {
@@ -55,14 +55,14 @@ export const StatusWrapper = styled.div`
   }
 
   path {
-    stroke: #1e293b;
+    stroke: ${theme.colors.black};
   }
 
   circle {
-    stroke: #1e293b;
-    fill: #1e293b;
+    stroke: ${theme.colors.black};
+    fill: ${theme.colors.black};
   }
-`
+`}`
 
 export const EditPreviewBtn = styled.button`
   background-color: transparent;
@@ -148,7 +148,6 @@ export const AddButton = styled.button`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.primary};
   height: 47px;
-  font-size: 2.4rem;
   border-radius: 50%;
   cursor: pointer;
   right: 2rem;
@@ -159,6 +158,11 @@ export const AddButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 
   @media(min-width: 768px) {
     display: none
