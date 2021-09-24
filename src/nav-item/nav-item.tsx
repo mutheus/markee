@@ -48,7 +48,8 @@ export function NavItem ({
 
 const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
   list-style-type: none;
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
   gap: 12px;
   place-items: center;
   height: 37px;
@@ -83,7 +84,11 @@ const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
 
 const ListLink = styled.a`
   text-decoration: none;
+  justify-self: start;
   font-weight: 400;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     color: ${({ theme }) => theme.colors.white}

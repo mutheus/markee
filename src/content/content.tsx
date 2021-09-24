@@ -1,6 +1,8 @@
 import { ChangeEvent, RefObject } from 'react'
 import { ReactComponent as HamburgerIcon } from './assets/hamburger-icon.svg'
 import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
+import { ReactComponent as PreViewIcon } from './assets/preview-icon.svg'
+import { ReactComponent as EditIcon } from './assets/edit-icon.svg'
 import { ReactComponent as ToSaveIcon } from 'shared/assets/to-save-icon.svg'
 import { ReactComponent as SavedIcon } from 'shared/assets/saved-icon.svg'
 import marked from 'marked'
@@ -91,11 +93,12 @@ export function Content ({
           )}
         </S.FileWrapper>
 
-        <S.Preview
+        <S.EditPreviewBtn
           onClick={showOutput}
         >
+          {isEditing ? <PreViewIcon /> : <EditIcon />}
           {isEditing ? 'Preview' : 'Edit'}
-        </S.Preview>
+        </S.EditPreviewBtn>
       </S.Header>
       <S.Container>
         <S.TextArea isEditing={isEditing} value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />

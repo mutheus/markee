@@ -20,6 +20,11 @@ export const ContentWrapper = styled.main`
 export const Header = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
   gap: 1em;
 `
 
@@ -59,12 +64,19 @@ export const StatusWrapper = styled.div`
   }
 `
 
-export const Preview = styled.button`
+export const EditPreviewBtn = styled.button`
   background-color: transparent;
   border: 2px solid ${({ theme }) => theme.colors.black};
   border-radius: 4px;
   padding: .3em .5em;
   cursor: pointer;
+  display: flex;
+  place-items: center;
+  gap: 8px;
+
+  svg {
+    width: 20px;
+  }
 
   @media (min-width: 768px) {
     display: none;
