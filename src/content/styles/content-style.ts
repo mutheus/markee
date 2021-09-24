@@ -1,5 +1,6 @@
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
-import styled from 'styled-components/macro'
+import { ReactComponent as SavingIcon } from 'shared/assets/saving-icon.svg'
+import styled, { keyframes } from 'styled-components/macro'
 
 export const ContentWrapper = styled.main`
   position: relative;
@@ -37,6 +38,18 @@ export const FileWrapper = styled.div`
   gap: .9em;
 `
 
+export const StatusWrapper = styled.div`
+  width: max-content;
+  path {
+    stroke: #1e293b;
+  }
+
+  circle {
+    stroke: #1e293b;
+    fill: #1e293b;
+  }
+`
+
 export const Preview = styled.button`
   background-color: transparent;
   border: 2px solid ${({ theme }) => theme.colors.black};
@@ -65,6 +78,19 @@ export const FileIconPrimary = styled(FileIcon)`
     stroke-opacity: unset;
     stroke-width: 1.5px;
   }
+`
+
+const spinning = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const SavingSpinner = styled(SavingIcon)`
+  animation: 2000ms ${spinning} infinite linear;
 `
 
 export const Container = styled.div`

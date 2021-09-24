@@ -1,6 +1,8 @@
 import { ChangeEvent, RefObject } from 'react'
 import { ReactComponent as HamburgerIcon } from './assets/hamburger-icon.svg'
 import { ReactComponent as PlusIcon } from './assets/plus-icon.svg'
+import { ReactComponent as ToSaveIcon } from 'shared/assets/to-save-icon.svg'
+import { ReactComponent as SavedIcon } from 'shared/assets/saved-icon.svg'
 import marked from 'marked'
 import { FileType } from 'files'
 
@@ -58,13 +60,35 @@ export function Content ({
         </S.HamburgerBtn>
 
         <S.FileWrapper>
-          <S.FileIconPrimary />
+          <div>
+            <S.FileIconPrimary />
+          </div>
 
           <S.InputText
             value={file.name}
             onChange={onNameChange}
             ref={inputRef}
           />
+
+          {isEditing && (
+            <S.StatusWrapper>
+              {file.active && file.status === 'editing'
+                ? (
+                  <ToSaveIcon />
+                  )
+                : file.active && file.status === 'saving'
+                  ? (
+                    <S.SavingSpinner />
+                    )
+                  : file.active && file.status === 'saved'
+                    ? (
+                      <SavedIcon />
+                      )
+                    : (
+                        ''
+                      )}
+            </S.StatusWrapper>
+          )}
         </S.FileWrapper>
 
         <S.Preview

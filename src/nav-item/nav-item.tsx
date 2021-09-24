@@ -1,8 +1,8 @@
 import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
-import { ReactComponent as RemoveIcon } from './assets/remove-icon.svg'
-import { ReactComponent as ToSaveIcon } from './assets/to-save-icon.svg'
-import { ReactComponent as SavingIcon } from './assets/saving-icon.svg'
-import { ReactComponent as SavedIcon } from './assets/saved-icon.svg'
+import { ReactComponent as RemoveIcon } from 'shared/assets/remove-icon.svg'
+import { ReactComponent as ToSaveIcon } from 'shared/assets/to-save-icon.svg'
+import { ReactComponent as SavingIcon } from 'shared/assets/saving-icon.svg'
+import { ReactComponent as SavedIcon } from 'shared/assets/saved-icon.svg'
 import styled, { css, keyframes } from 'styled-components'
 import { FileType, SidebarType } from 'files'
 
