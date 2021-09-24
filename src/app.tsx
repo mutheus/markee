@@ -8,6 +8,8 @@ import localforage from 'localforage'
 
 export function App () {
   const [files, setFiles] = useState<FileType[]>([])
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isEditing, setIsEditing] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -122,12 +124,13 @@ export function App () {
   const onAddFile = () => {
     inputRef.current?.focus()
     const id = uuidv4()
+    toggleMenu()
 
     window.history.replaceState(null, '', `/file/${id}`)
 
     const newFile: FileType = {
       id,
-      name: 'Empty title',
+      name: 'Untitled',
       content: '',
       active: true,
       status: 'saved',
@@ -146,6 +149,7 @@ export function App () {
   const onSelectFile = (id: string) => (e: MouseEvent) => {
     e.preventDefault()
     inputRef.current?.focus()
+    toggleMenu()
 
     window.history.replaceState(null, '', `/file/${id}`)
 
@@ -170,6 +174,14 @@ export function App () {
     setFiles(files => files.filter(file => file.id !== id))
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const showOutput = () => {
+    setIsEditing(!isEditing)
+  }
+
   return (
     <Wrapper>
       <Sidebar
@@ -177,6 +189,9 @@ export function App () {
         onSelectFile={onSelectFile}
         onAddFile={onAddFile}
         onRemoveFile={onRemoveFile}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+
       />
 
       <Content
@@ -184,6 +199,9 @@ export function App () {
         onContentChange={onContentChange}
         file={files.find(file => file.active === true)}
         inputRef={inputRef}
+        toggleMenu={toggleMenu}
+        showOutput={showOutput}
+        isEditing={isEditing}
       />
     </Wrapper>
   )
@@ -191,5 +209,5 @@ export function App () {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 20.750em 1fr;
+  grid-template-columns: minmax(min-content, 20.750em) 1fr;
 `

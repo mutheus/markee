@@ -2,13 +2,50 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import styled from 'styled-components/macro'
 
 export const ContentWrapper = styled.main`
+  grid-column: 1 / 4;
+
+  @media (min-width: 600px) {
+    grid-column: 2 / 4;
+  }
+
   padding: 1.5em 1.875em;
 `
 
 export const Header = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1em;
+`
+
+export const HamburgerBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  place-items: center;
+
+  @media (min-width: 600px) {
+    display: none;
+  }
+`
+
+export const FileWrapper = styled.div`
   display: flex;
   place-items: center;
   gap: .9em;
+`
+
+export const Preview = styled.button`
+  background-color: transparent;
+  border: 2px solid ${({ theme }) => theme.colors.black};
+  border-radius: 4px;
+  padding: .3em .5em;
+  cursor: pointer;
+
+  @media (min-width: 600px) {
+    display: none;
+  }
 `
 
 export const InputText = styled.input`
@@ -19,6 +56,7 @@ export const InputText = styled.input`
   font-weight: 500;
   letter-spacing: -.02em;
   outline: none;
+  width: 100%;
 `
 export const FileIconPrimary = styled(FileIcon)`
   path {
@@ -30,7 +68,11 @@ export const FileIconPrimary = styled(FileIcon)`
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
   padding: 2.5em 0 1em 0;
   height: 99%;
 `
@@ -49,9 +91,12 @@ export const TextArea = styled.textarea`
 `
 
 export const Output = styled.output`
-  padding: 0 2em 0;
   color: ${({ theme }) => theme.colors.black};
-  border-left: 2px solid rgba(30, 41, 59, .12);
+
+  @media (min-width: 600px) {
+    border-left: 2px solid rgba(30, 41, 59, .12);
+    padding: 0 2em 0;
+  }
 
   h2 {
     font-size: 2rem;

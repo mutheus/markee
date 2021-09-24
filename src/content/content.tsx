@@ -1,4 +1,5 @@
 import { ChangeEvent, RefObject } from 'react'
+import { ReactComponent as HamburgerIcon } from './assets/hamburger-icon.svg'
 import marked from 'marked'
 import { FileType } from 'files'
 
@@ -24,6 +25,9 @@ type ContentProps = {
   inputRef: RefObject<HTMLInputElement>
   onNameChange: (e: ChangeEvent<HTMLInputElement>) => void
   onContentChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  toggleMenu: () => void
+  showOutput: () => void
+  isEditing: boolean
 }
 
 export function Content ({
@@ -31,6 +35,9 @@ export function Content ({
   inputRef,
   onNameChange,
   onContentChange,
+  toggleMenu,
+  showOutput,
+  isEditing,
 }: ContentProps) {
   if (!file) return null
 
@@ -41,14 +48,36 @@ export function Content ({
   return (
     <S.ContentWrapper>
       <S.Header>
-        <S.FileIconPrimary />
+        <S.HamburgerBtn
+          onClick={toggleMenu}
+        >
+          <HamburgerIcon />
+        </S.HamburgerBtn>
 
-        <S.InputText value={file.name} onChange={onNameChange} ref={inputRef} />
+        <S.FileWrapper>
+          <S.FileIconPrimary />
+
+          <S.InputText
+            value={file.name}
+            onChange={onNameChange}
+            ref={inputRef}
+          />
+        </S.FileWrapper>
+
+        <S.Preview
+          onClick={showOutput}
+        >
+          {isEditing ? 'Edit' : 'Preview'}
+        </S.Preview>
       </S.Header>
       <S.Container>
-        <S.TextArea value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
-
-        <S.Output dangerouslySetInnerHTML={createContent()} />
+        {isEditing
+          ? (
+            <S.TextArea value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
+            )
+          : (
+            <S.Output dangerouslySetInnerHTML={createContent()} />
+            )}
       </S.Container>
     </S.ContentWrapper>
   )
