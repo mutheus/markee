@@ -66,7 +66,7 @@ const ListItem = styled.li<ListItemProps>`${({ active, theme }) => css`
     stroke-opacity: ${active && 'unset'};
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     &:hover {
       background-color: ${theme.colors.lightBlack};
 
@@ -93,7 +93,7 @@ const ListLink = styled.a`
 const RemoveButton = styled.button`
   background-color: transparent;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     visibility: hidden;
 
   }

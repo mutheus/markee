@@ -98,20 +98,13 @@ export function Content ({
         </S.Preview>
       </S.Header>
       <S.Container>
-        {isEditing
-          ? (
-            <>
-              <S.TextArea value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
-            </>
-            )
-          : (
-            <>
-              <S.Output dangerouslySetInnerHTML={createContent()} />
-              <S.AddButton onClick={onAddFile}>
-                <PlusIcon />
-              </S.AddButton>
-            </>
-            )}
+        <S.TextArea isEditing={isEditing} value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
+
+        <S.Output isEditing={isEditing} dangerouslySetInnerHTML={createContent()} />
+
+        <S.AddButton onClick={onAddFile}>
+          <PlusIcon />
+        </S.AddButton>
       </S.Container>
     </S.ContentWrapper>
   )

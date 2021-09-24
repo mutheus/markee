@@ -9,7 +9,14 @@ export const Overlay = styled.div<OverlayProps>`${({ isMenuOpen }) => css`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
-  display: ${isMenuOpen ? 'flex' : 'none'};
+  display: ${isMenuOpen ? 'grid' : 'none'};
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-column: 1 / 2;
+    position: initial;
+  }
+
   z-index: 1000;
 `}`
 
@@ -22,6 +29,10 @@ export const AsideContainer = styled.aside`${({ theme }) => css`
   flex-direction: column;
   color: ${theme.colors.white};
   width: 80%;
+
+  @media (min-width: 768px) {
+    width: 100%;
+  }
 `}`
 
 export const LogoWrapper = styled.h1`
@@ -29,14 +40,14 @@ export const LogoWrapper = styled.h1`
   justify-content: center;
   margin: .4em 0 .4em;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     margin: .4em 0 1.4em;
   }
 
   a {
     line-height: 0;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       svg {
         width: 4em;
       }
@@ -78,7 +89,7 @@ export const AddButton = styled.button`${({ theme }) => css`
   justify-content: center;
   gap: .750em;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     display: flex;
   }
 

@@ -2,11 +2,15 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import { ReactComponent as SavingIcon } from 'shared/assets/saving-icon.svg'
 import styled, { keyframes } from 'styled-components/macro'
 
+type ContentProps = {
+  isEditing: boolean
+}
+
 export const ContentWrapper = styled.main`
   position: relative;
   grid-column: 1 / 4;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     grid-column: 2 / 4;
   }
 
@@ -27,7 +31,7 @@ export const HamburgerBtn = styled.button`
   display: flex;
   place-items: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     display: none;
   }
 `
@@ -40,6 +44,11 @@ export const FileWrapper = styled.div`
 
 export const StatusWrapper = styled.div`
   width: max-content;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
   path {
     stroke: #1e293b;
   }
@@ -57,7 +66,7 @@ export const Preview = styled.button`
   padding: .3em .5em;
   cursor: pointer;
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     display: none;
   }
 `
@@ -104,7 +113,7 @@ export const Container = styled.div`
   height: 99%;
 `
 
-export const TextArea = styled.textarea`
+export const TextArea = styled.textarea<ContentProps>`
   font-size: 1.125rem;
   min-height: 100%;
   font-family: 'Inconsolata', sans-serif;
@@ -115,6 +124,12 @@ export const TextArea = styled.textarea`
   line-height: 19px;
   resize: none;
   outline: none;
+
+  display: ${({ isEditing }) => isEditing ? 'initial' : 'none'};
+
+  @media (min-width: 768px) {
+    display: initial;
+  }
 `
 
 export const AddButton = styled.button`
@@ -133,14 +148,20 @@ export const AddButton = styled.button`
   align-items: center;
   justify-content: center;
 
+  @media(min-width: 768px) {
+    display: none
+  }
+
 `
 
-export const Output = styled.output`
+export const Output = styled.output<ContentProps>`
   color: ${({ theme }) => theme.colors.black};
+  display: ${({ isEditing }) => isEditing ? 'none' : 'initial'};
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     border-left: 2px solid rgba(30, 41, 59, .12);
     padding: 0 2em 0;
+    display: initial;
   }
 
   h2 {

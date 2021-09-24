@@ -210,6 +210,11 @@ export function App () {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: minmax(min-content, 20.750em) 1fr;
+  grid-template-columns: 1fr 2fr;
+
+  @media (min-width: 1058px) {
+    grid-template-columns: 20.750em 2fr;
+  }
+
   min-height: 99vh;
 `
