@@ -2,6 +2,7 @@ import { ReactComponent as FileIcon } from 'shared/assets/file-icon.svg'
 import styled from 'styled-components/macro'
 
 export const ContentWrapper = styled.main`
+  position: relative;
   grid-column: 1 / 4;
 
   @media (min-width: 600px) {
@@ -88,6 +89,19 @@ export const TextArea = styled.textarea`
   line-height: 19px;
   resize: none;
   outline: none;
+`
+
+export const AddButton = styled.button`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.primary};
+  height: 47px;
+  font-size: 2.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  right: 2rem;
+  bottom: 2rem;
+  aspect-ratio: 1/1;
+  border: none;
 `
 
 export const Output = styled.output`

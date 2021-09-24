@@ -27,6 +27,7 @@ type ContentProps = {
   onContentChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   toggleMenu: () => void
   showOutput: () => void
+  onAddFile: () => void
   isEditing: boolean
 }
 
@@ -38,6 +39,7 @@ export function Content ({
   toggleMenu,
   showOutput,
   isEditing,
+  onAddFile,
 }: ContentProps) {
   if (!file) return null
 
@@ -67,16 +69,21 @@ export function Content ({
         <S.Preview
           onClick={showOutput}
         >
-          {isEditing ? 'Edit' : 'Preview'}
+          {isEditing ? 'Preview' : 'Edit'}
         </S.Preview>
       </S.Header>
       <S.Container>
         {isEditing
           ? (
-            <S.TextArea value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
+            <>
+              <S.TextArea value={file.content} onChange={onContentChange} placeholder='Your markdown goes here...' />
+            </>
             )
           : (
-            <S.Output dangerouslySetInnerHTML={createContent()} />
+            <>
+              <S.Output dangerouslySetInnerHTML={createContent()} />
+              <S.AddButton onClick={onAddFile}>+</S.AddButton>
+            </>
             )}
       </S.Container>
     </S.ContentWrapper>

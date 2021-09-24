@@ -7,9 +7,10 @@ type OverlayProps = {
 export const Overlay = styled.div<OverlayProps>`${({ isMenuOpen }) => css`
   min-height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   display: ${isMenuOpen ? 'flex' : 'none'};
+  z-index: 1000;
 `}`
 
 export const AsideContainer = styled.aside`${({ theme }) => css`

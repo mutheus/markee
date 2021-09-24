@@ -9,7 +9,7 @@ import localforage from 'localforage'
 export function App () {
   const [files, setFiles] = useState<FileType[]>([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isEditing, setIsEditing] = useState(true)
+  const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export function App () {
   const onAddFile = () => {
     inputRef.current?.focus()
     const id = uuidv4()
-    toggleMenu()
+    showOutput()
 
     window.history.replaceState(null, '', `/file/${id}`)
 
@@ -202,6 +202,7 @@ export function App () {
         toggleMenu={toggleMenu}
         showOutput={showOutput}
         isEditing={isEditing}
+        onAddFile={onAddFile}
       />
     </Wrapper>
   )
@@ -210,4 +211,5 @@ export function App () {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: minmax(min-content, 20.750em) 1fr;
+  min-height: 99vh;
 `
