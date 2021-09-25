@@ -9,6 +9,9 @@ type ContentProps = {
 export const ContentWrapper = styled.main`
   position: relative;
   grid-column: 1 / 4;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  min-height: 100vh;
 
   @media (min-width: 768px) {
     grid-column: 2 / 4;
@@ -74,10 +77,6 @@ export const EditPreviewBtn = styled.button`
   place-items: center;
   gap: 8px;
 
-  svg {
-    width: 20px;
-  }
-
   @media (min-width: 768px) {
     display: none;
   }
@@ -121,13 +120,13 @@ export const Container = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  padding: 2.5em 0 1em 0;
-  height: 99%;
+  margin-top: 2em;
 `
 
 export const TextArea = styled.textarea<ContentProps>`
   font-size: 1.125rem;
-  min-height: 100%;
+  display: flex;
+  height: 100%;
   font-family: 'Inconsolata', sans-serif;
   color: rgba(30, 41, 59, .86);
   border: none;
@@ -136,18 +135,18 @@ export const TextArea = styled.textarea<ContentProps>`
   line-height: 19px;
   resize: none;
   outline: none;
-
   display: ${({ isEditing }) => isEditing ? 'initial' : 'none'};
 
   @media (min-width: 768px) {
     display: initial;
+    margin-right: 1em;
   }
 `
 
 export const AddButton = styled.button`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.primary};
-  height: 47px;
+  height: 55px;
   border-radius: 50%;
   cursor: pointer;
   right: 2rem;
@@ -160,8 +159,8 @@ export const AddButton = styled.button`
   justify-content: center;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
   }
 
   @media(min-width: 768px) {
@@ -176,7 +175,7 @@ export const Output = styled.output<ContentProps>`
 
   @media (min-width: 768px) {
     border-left: 2px solid rgba(30, 41, 59, .12);
-    padding: 0 2em 0;
+    padding-left: 1em;
     display: initial;
   }
 
@@ -189,6 +188,10 @@ export const Output = styled.output<ContentProps>`
   p {
     color: rgba(30, 41, 59, .7);
     margin: .5rem 0;
+  }
+
+  * {
+    word-wrap: anywhere;
   }
 
   *:first-child {
