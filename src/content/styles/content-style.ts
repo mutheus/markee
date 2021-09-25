@@ -51,7 +51,10 @@ export const FileWrapper = styled.div`
 `
 
 export const StatusWrapper = styled.div`${({ theme }) => css`
-  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
 
   @media (min-width: 768px) {
     display: none;
