@@ -7,7 +7,7 @@ type OverlayProps = {
 export const Overlay = styled.div<OverlayProps>`${({ isMenuOpen }) => css`
   min-height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${isMenuOpen ? 'rgba(0, 0, 0, 0.4)' : ''};
   position: absolute;
   transform: ${isMenuOpen ? 'translateX(0%)' : 'translateX(-100%)'};
   transition: transform 0.2s ease-in;

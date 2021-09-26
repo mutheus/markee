@@ -197,6 +197,10 @@ export const Output = styled.output<ContentProps>`
     word-wrap: anywhere;
   }
 
+  pre {
+    white-space: pre-wrap;
+  }
+
   *:first-child {
     margin-top: 0;
   }
