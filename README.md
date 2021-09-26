@@ -14,8 +14,7 @@
 - [Styled components](https://styled-components.com)
 
   
-## 🚀 Run the project
-
+## 🚀 How to run
 ```bash
 # Step one
 $ git clone https://github.com/mutheus/markee.git && cd markee
