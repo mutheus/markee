@@ -1,4 +1,4 @@
-## 🚀 Project  
+## 💡 Project  
   
 <p align="center">
   <img src="https://i.ibb.co/0ZtJ3Cg/Vector-1.png" width="40px">
@@ -14,7 +14,7 @@
 - [Styled components](https://styled-components.com)
 
   
-## Run the project
+## 🚀 Run the project
 
 ```bash
 # Step one
