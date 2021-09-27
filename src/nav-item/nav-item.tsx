@@ -18,7 +18,7 @@ export function NavItem ({
     <S.ListItem active={file.active} onClick={onSelectFile(file.id)}>
       <FileIcon />
 
-      <S.ListLink>{file.name}</S.ListLink>
+      <S.ListLink><span>{file.name}</span></S.ListLink>
 
       {file.active && file.status === 'editing'
         ? (

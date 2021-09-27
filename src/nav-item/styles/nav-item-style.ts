@@ -45,10 +45,16 @@ export const ListLink = styled.a`
   text-decoration: none;
   justify-self: start;
   font-weight: 400;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
+  height: 100%;
+  display: grid;
+  align-items: center;
+
+  span {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
 
   &:hover {
     color: ${({ theme }) => theme.colors.white}
